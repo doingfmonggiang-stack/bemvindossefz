@@ -1,1 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sacramento Motorsports | Peças e Acessórios para Motos</title>
+    
+    <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- Estilo customizado -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+        
+        /* Navbar e cores temáticas (motorsports) */
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            font-size: 1.7rem;
+        }
+        
+        .bg-motorsport {
+            background: linear-gradient(135deg, #0b0f1c 0%, #1a1f2f 100%);
+        }
+        
+        .btn-motorsport {
+            background-color: #e63946;
+            border-color: #e63946;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-motorsport:hover {
+            background-color: #c1121f;
+            border-color: #c1121f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(230,57,70,0.3);
+        }
+        
+        .btn-outline-motorsport {
+            border: 2px solid #e63946;
+            color: #e63946;
+            font-weight: 600;
+        }
+        
+        .btn-outline-motorsport:hover {
+            background-color: #e63946;
+            color: white;
+        }
+        
+        .hero-section {
+            background: radial-gradient(circle at 10% 20%, rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1470&auto=format');
+            background-size: cover;
+            background-position: center 40%;
+            background-attachment: fixed;
+            color: white;
+            padding: 5rem 0;
+        }
+        
+        .card-hover {
+            transition: all 0.25s ease-in-out;
+            border: none;
+            border-radius: 1.25rem;
+            overflow: hidden;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+        }
+        
+        .icon-circle {
+            background-color: #fee2e2;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1rem auto;
+            transition: 0.2s;
+        }
+        
+        .icon-circle i {
+            font-size: 2.4rem;
+            color: #e63946;
+        }
+        
+        .section-title {
+            position: relative;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: #e63946;
+            border-radius: 4px;
+        }
+        
+        .text-center .section-title:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .info-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.6rem;
+            height: 100%;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+            transition: 0.2s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        footer {
+            background-color: #0b0f1c;
+            color: #cbd5e1;
+        }
+        
+        .footer-link {
+            color: #f1f5f9;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        
+        .footer-link:hover {
+            color: #e63946;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+            z-index: 1030;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+                text-align: center;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        .badge-data {
+            background: #1e293b;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
 
+    <!-- NAVBAR (BOOTSTRAP RESPONSIVA) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-motorsport sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-motherboard me-2"></i> Sacramento <span style="color:#e63946;">Motorsports</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#produtos">Peças</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#acessorios">Acessórios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">A Loja</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+                <a href="tel:+551145236233" class="btn btn-outline-light ms-lg-3 px-3 rounded-pill">
+                    <i class="bi bi-telephone-fill"></i> Ligue Já
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION COM FRASE IMPACTANTE -->
+    <section id="home" class="hero-section">
+        <div class="container py-4 py-md-5">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <span class="badge bg-danger mb-3 px-3 py-2 rounded-pill"><i class="bi bi-trophy-fill me-1"></i> +4 anos de excelência</span>
+                    <h1 class="display-4 fw-bold mb-3">Potência, estilo e segurança <br> para sua moto</h1>
+                    <p class="lead mb-4">Peças originais e acessórios de alto desempenho para motocicletas e motonetas. Tudo que você precisa para pilotar com confiança.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#produtos" class="btn btn-motorsport btn-lg px-4 rounded-pill"><i class="bi bi-grid-3x3-gap-fill me-2"></i> Explorar catálogo</a>
+                        <a href="https://wa.me/551145236233?text=Olá!%20Gostaria%20de%20informações%20sobre%20peças." target="_blank" class="btn btn-outline-light btn-lg rounded-pill"><i class="bi bi-whatsapp me-2"></i> Atendimento via WhatsApp</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <div class="bg-white bg-opacity-10 rounded-4 p-4 backdrop-blur-sm" style="backdrop-filter: blur(4px);">
+                        <i class="bi bi-shield-check fs-1 text-warning"></i>
+                        <p class="mt-2 mb-0 fw-semibold">Peças novas com garantia <br> Entrega rápida para São Paulo e todo Brasil</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÍCONES + FRASES DIFERENCIAIS (cards serviços) -->
+    <section class="container py-5">
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="icon-circle mx-auto">
+                        <i class="bi bi-tools"></i>
+                    </div>
+                    <h5 class="fw-bold">Peças 100% Originais</h5>
+                    <p class="text-secondary">Somente fornecedores certificados, qualidade e durabilidade que você confia.</p>
+                    <span class="badge bg-light text-dark">+800 itens em estoque</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="icon-circle mx-auto">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                    <h5 class="fw-bold">Entrega Rápida</h5>
+                    <p class="text-secondary">Enviamos para todo território nacional, com logística ágil e segura.</p>
+                    <i class="bi bi-geo-alt-fill text-danger me-1"></i><small>SP capital: receba em 24h</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="icon-circle mx-auto">
+                        <i class="bi bi-headset"></i>
+                    </div>
+                    <h5 class="fw-bold">Suporte Especializado</h5>
+                    <p class="text-secondary">Equipe apaixonada por motociclismo para orientar na escolha certa.</p>
+                    <span class="text-danger fw-semibold"><i class="bi bi-chat-dots"></i> Profissionais prontos</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE PRODUTOS EM DESTAQUE (PEÇAS E ACESSÓRIOS) -->
+    <section id="produtos" class="bg-light py-5">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Peças <span class="text-danger">Novas</span> em Destaque</h2>
+                <p class="mb-5 text-secondary">Confira os itens mais vendidos para sua motocicleta ou motoneta</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card card-hover h-100 shadow-sm border-0 rounded-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-ev-station fs-1 text-danger"></i>
+                            <h5 class="card-title fw-bold mt-3">Kit Transmissão</h5>
+                            <p class="card-text text-secondary">Corrente + coroas originais, maior durabilidade e performance.</p>
+                            <span class="badge bg-danger rounded-pill">Até 12x</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card card-hover h-100 shadow-sm border-0 rounded-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-brightness-alt-high fs-1 text-danger"></i>
+                            <h5 class="card-title fw-bold mt-3">Faróis Full LED</h5>
+                            <p class="card-text">Visibilidade total e design moderno, compatível com as principais marcas.</p>
+                            <span class="badge bg-danger rounded-pill">Iluminação Premium</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card card-hover h-100 shadow-sm border-0 rounded-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-gem fs-1 text-danger"></i>
+                            <h5 class="card-title fw-bold mt-3">Pastilhas de Freio</h5>
+                            <p class="card-text">Alta fricção e segurança, materiais sinterizados e semi-metálicos.</p>
+                            <span class="badge bg-danger rounded-pill">Freios ABS ready</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card card-hover h-100 shadow-sm border-0 rounded-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-fan fs-1 text-danger"></i>
+                            <h5 class="card-title fw-bold mt-3">Vela Iridium</h5>
+                            <p class="card-text">Maior eficiência na partida e economia de combustível.</p>
+                            <span class="badge bg-danger rounded-pill">Tecnologia japonesa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO ACESSÓRIOS (MOTONETAS/MOTOS) -->
+    <section id="acessorios" class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Acessórios <span class="text-danger">Exclusivos</span></h2>
+            <p class="text-secondary">Estilo e funcionalidade para transformar sua experiência sobre duas rodas</p>
+        </div>
+        <div class="row g-4 align-items-center">
+            <div class="col-md-4">
+                <div class="info-card text-center">
+                    <i class="bi bi-backpack fs-1 text-danger"></i>
+                    <h5 class="mt-2">Mochilas e Bags</h5>
+                    <p>Impermeáveis, ergonômicas e com espaço para capacete.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card text-center">
+                    <i class="bi bi-shield-shaded fs-1 text-danger"></i>
+                    <h5 class="mt-2">Capacetes & Protetores</h5>
+                    <p>Linha completa de capacetes, luvas, jaquetas e cotoveleiras.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card text-center">
+                    <i class="bi bi-phone-fill fs-1 text-danger"></i>
+                    <h5 class="mt-2">Suportes para Celular</h5>
+                    <p>Carga sem fio, fixação resistente para guidão e GPS.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mt-3">
+                <div class="info-card text-center">
+                    <i class="bi bi-bluetooth fs-1 text-danger"></i>
+                    <h5>Intercomunicadores</h5>
+                    <p>Comunique-se com sua equipe, ouça música, receba chamadas.</p>
+                </div>
+            </div>
+            <div class="col-md-6 mt-3">
+                <div class="info-card text-center">
+                    <i class="bi bi-bicycle fs-1 text-danger"></i>
+                    <h5>Alforjes e Baús</h5>
+                    <p>Capacidade expandida para viagens longas ou entregas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE A EMPRESA + DADOS CADASTRAIS (CNPJ, DATA, ENDEREÇO) -->
+    <section id="sobre" class="bg-light py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <h2 class="section-title mb-4">Sobre a <span class="text-danger">Sacramento Motorsports</span></h2>
+                    <p class="lead fw-semibold">Referência em São Paulo para quem busca qualidade e atendimento especializado em peças e acessórios para motos e motonetas.</p>
+                    <p>Desde 2020 trabalhando com transparência e compromisso, nossa loja física no coração da Vila Nova Conceição oferece um ambiente completo para você encontrar desde uma simples vela até um kit de carenagem. Somos apaixonados por motociclismo e levamos isso a sério: cada peça entregue é testada e tem garantia de origem.</p>
+                    <div class="mt-4 p-3 border-start border-danger border-4 bg-white rounded-3 shadow-sm">
+                        <div class="d-flex flex-column gap-2">
+                            <div><i class="bi bi-building me-2 text-danger"></i> <strong>Razão Social:</strong> Sacramento LTDA</div>
+                            <div><i class="bi bi-tag me-2 text-danger"></i> <strong>Nome Fantasia:</strong> Sacramento Motorsports</div>
+                            <div><i class="bi bi-qr-code me-2 text-danger"></i> <strong>CNPJ:</strong> 37.407.329/0001-81 (37407329000181)</div>
+                            <div><i class="bi bi-calendar-check me-2 text-danger"></i> <strong>Situação Cadastral:</strong> ATIVA desde <span class="fw-bold">15/06/2020</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-card p-4 h-100">
+                        <h4 class="fw-bold mb-3"><i class="bi bi-geo-alt-fill text-danger me-2"></i> Nossa Localização</h4>
+                        <address class="mb-3">
+                            <p class="mb-1"><strong>Avenida Pres Juscelino Kubitschek, 267</strong></p>
+                            <p class="mb-1">Bairro: Vila Nova Conceicao</p>
+                            <p class="mb-1">São Paulo - SP, CEP: 04543-011</p>
+                            <hr>
+                            <p><i class="bi bi-telephone-fill me-2 text-danger"></i> Telefone: (11) 4523-6233</p>
+                        </address>
+                        <div class="mt-3">
+                            <a href="https://maps.google.com/?q=Avenida+Pres+Juscelino+Kubitschek,267+São+Paulo" target="_blank" class="btn btn-outline-motorsport rounded-pill w-100"><i class="bi bi-map me-2"></i> Ver rotas e mapa</a>
+                        </div>
+                        <div class="mt-4 pt-2">
+                            <i class="bi bi-clock-history text-danger me-1"></i> Horário de funcionamento: <strong>Segunda a Sexta 9h - 19h | Sábado 9h - 14h</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE INFORMAÇÕES COMPLEMENTARES: VANTAGENS, FRASE MOTIVACIONAL -->
+    <section class="container py-5">
+        <div class="row align-items-center bg-white rounded-4 shadow-sm p-4 p-md-5">
+            <div class="col-md-8">
+                <h3 class="fw-bold"><i class="bi bi-lightbulb-fill text-warning me-2"></i> Por que escolher a Sacramento Motorsports?</h3>
+                <ul class="list-unstyled mt-3">
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Peças novas com nota fiscal e garantia original</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Entrega própria na Grande São Paulo e Correios para todo Brasil</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Profissionais treinados para ajudar na escolha exata do componente</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Parceria com as melhores marcas: Shinko, NGK, Bosch, Pro Tork e muito mais</li>
+                </ul>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="bg-danger bg-opacity-10 rounded-circle p-3 d-inline-block">
+                    <i class="bi bi-star-fill text-danger fs-1"></i>
+                </div>
+                <p class="mt-2 fst-italic fw-semibold">"Potência que acelera seus sonhos" <br> — Equipe Sacramento</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO / FORMULÁRIO RÁPIDO + MAPA MINI -->
+    <section id="contato" class="bg-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <h2 class="section-title">Fale Conosco</h2>
+                    <p class="mb-4">Tem dúvida sobre qual peça comprar? Precisa de orçamento? Nossa equipe está pronta para ajudar!</p>
+                    <div class="d-flex flex-column gap-3">
+                        <div><i class="bi bi-whatsapp fs-4 me-3 text-success"></i> <strong>WhatsApp:</strong> (11) 4523-6233</div>
+                        <div><i class="bi bi-envelope-paper fs-4 me-3 text-danger"></i> <strong>E-mail:</strong> contato@sacramentomotorsports.com.br</div>
+                        <div><i class="bi bi-instagram fs-4 me-3 text-secondary"></i> <strong>Instagram:</strong> @sacramentomotors</div>
+                        <hr>
+                        <div class="mt-2">
+                            <a href="tel:+551145236233" class="btn btn-motorsport rounded-pill w-100"><i class="bi bi-telephone-forward"></i> Ligar agora</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow rounded-4 overflow-hidden">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3">Envie sua mensagem rápida</h5>
+                            <form action="#" method="post">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nome completo</label>
+                                        <input type="text" class="form-control" placeholder="Seu nome">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Telefone ou e-mail</label>
+                                        <input type="email" class="form-control" placeholder="contato@exemplo.com">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Mensagem</label>
+                                        <textarea rows="3" class="form-control" placeholder="Gostaria de saber sobre peças para minha moto..."></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-motorsport w-100 rounded-pill" onclick="alert('Em breve nosso time retornará: (11)4523-6233 ou WhatsApp. Obrigado!')">Enviar consulta <i class="bi bi-arrow-right"></i></button>
+                                        <small class="text-muted">Resposta em até 2h úteis.</small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER COMPLETO COM INFORMAÇÕES LEGAIS -->
+    <footer class="pt-5 pb-4">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-5">
+                    <h4 class="fw-bold text-white"><i class="bi bi-motherboard"></i> Sacramento Motorsports</h4>
+                    <p class="small text-secondary-emphasis">Peças e acessórios novos para motocicletas e motonetas. Excelência desde 2020.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="footer-link"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="footer-link"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="footer-link"><i class="bi bi-youtube fs-5"></i></a>
+                        <a href="https://wa.me/551145236233" class="footer-link"><i class="bi bi-whatsapp fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-bold text-white">Links rápidos</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="footer-link text-decoration-none">Início</a></li>
+                        <li><a href="#produtos" class="footer-link text-decoration-none">Peças</a></li>
+                        <li><a href="#acessorios" class="footer-link text-decoration-none">Acessórios</a></li>
+                        <li><a href="#sobre" class="footer-link text-decoration-none">Sobre a loja</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-white">Contato oficial</h6>
+                    <p class="mb-1 small"><i class="bi bi-geo-alt"></i> Av. Pres Juscelino Kubitschek, 267 - Vila Nova Conceição, SP</p>
+                    <p class="mb-1 small"><i class="bi bi-telephone"></i> (11) 4523-6233</p>
+                    <p class="mb-0 small"><i class="bi bi-calendar"></i> CNPJ: 37.407.329/0001-81 | Desde 15/06/2020</p>
+                    <p class="mt-2 small text-white-50">© 2025 Sacramento LTDA - Todos os direitos reservados.</p>
+                </div>
+            </div>
+            <hr class="opacity-25">
+            <div class="text-center small text-secondary">
+                <i class="bi bi-shield-check"></i> Comércio de peças novas para motocicletas e motonetas | Venda apenas produtos com certificação.
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÃO WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/551145236233?text=Olá!%20Vim%20pelo%20site%20Sacramento%20Motorsports%20e%20gostaria%20de%20informações%20sobre%20peças." target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS + Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
